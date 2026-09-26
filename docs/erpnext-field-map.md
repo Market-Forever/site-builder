@@ -36,26 +36,36 @@ starts — never silently proceed past a flagged risk.
 
 ## `custom_industry` → niche pack mapping
 
-| `custom_industry` value seen in ERPNext | Niche pack |
+As of 2026-09-27 the picklist is: Healthcare, Property & Construction,
+E-commerce, Professional Services, Hospitality, Retail, Technology,
+Education, Finance, Engineering, Church, Non-Profit / Charity,
+App / Software, Other.
+
+| `custom_industry` value | Niche pack |
 |---|---|
 | Healthcare | `niche-medical-aesthetic` |
-| (no current value, but client is a clinic/wellness/plastic-surgery/skin-clinic business) | `niche-medical-aesthetic` |
 | Property & Construction (residential/agency context) | `niche-property` |
 | Property & Construction (developer/management context) | `niche-property` (management sub-pattern) |
-| Professional Services | `niche-engineering` (best current fit) |
-| Technology (B2B/procurement-style product or service) | `niche-engineering` |
-| Technology (self-serve app/software product) | `niche-app-marketing` — confirm with the human which one, `custom_industry` alone can't distinguish these |
+| Engineering | `niche-engineering` |
+| Professional Services | `niche-engineering` (best current fit — some Professional Services clients may not fit; check the brief) |
+| Technology | Ambiguous — could be `niche-engineering` (B2B/procurement-style product) or `niche-app-marketing` (self-serve app/software). `custom_industry` alone can't distinguish these; confirm with the human. |
+| App / Software | `niche-app-marketing` |
 | E-commerce | `niche-ecommerce` |
-| Other, where the client is actually a church | `niche-faith-nonprofit` (church sub-pattern) — e.g. **More Church**, currently sitting under `Other` |
-| Other, where the client is actually a non-profit/charity | `niche-faith-nonprofit` (non-profit sub-pattern) |
-| Anything else / `Other` / empty, not covered above | No niche pack matches — ask the human which pack applies, or whether a new one is needed. Do not guess. |
+| Church | `niche-faith-nonprofit` (church sub-pattern) |
+| Non-Profit / Charity | `niche-faith-nonprofit` (non-profit sub-pattern) |
+| Other / empty | No niche pack matches automatically. Read `custom_company_background` and `custom_target_audience` for real evidence before asking the human which pack applies (or whether a new one is needed) — don't guess from the client name alone. Some `Other` clients (e.g. a security-equipment hire business, a local pet-care service) genuinely don't fit any pack yet — that's a legitimate outcome, not a classification failure. |
 
-Known gaps in the `custom_industry` Select list — flag to the team rather
-than working around them silently:
+Reclassified from `Other` with confirmed evidence on 2026-09-27: **More
+Church** → Church; **LMI** (Legacy Ministries International, a
+registered UK charity) → Non-Profit / Charity.
 
-- No distinct **Engineering** value (closest: Property & Construction /
-  Professional Services).
-- No distinct **App/Software** value separate from general Technology.
-- No **Church** or **Non-profit/Charity** value — these currently land in
-  `Other`, which is why `Other` can't be routed automatically and always
-  needs a human check.
+## Auto-classifying new customers
+
+Not yet automated. The existing `claude_*` enrichment fields (pain points,
+recommended services, etc.) are populated by an external pipeline — likely
+n8n calling out to Claude on Client/Intake Form submission, based on the
+"Populated by n8n" field descriptions elsewhere on `Customer`. The right
+place to add `custom_industry` classification is inside that existing
+pipeline, not as a separate mechanism — it already has the business
+description in hand at the moment a customer/intake record is created.
+Until that's wired up, classify `custom_industry` manually per new client.
