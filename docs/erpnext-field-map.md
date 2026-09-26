@@ -43,11 +43,19 @@ starts — never silently proceed past a flagged risk.
 | Property & Construction (residential/agency context) | `niche-property` |
 | Property & Construction (developer/management context) | `niche-property` (management sub-pattern) |
 | Professional Services | `niche-engineering` (best current fit) |
-| Technology | `niche-engineering` (best current fit) |
-| Anything else / `Other` / empty | No niche pack matches — ask the human which pack applies, or whether a new one is needed. Do not guess. |
+| Technology (B2B/procurement-style product or service) | `niche-engineering` |
+| Technology (self-serve app/software product) | `niche-app-marketing` — confirm with the human which one, `custom_industry` alone can't distinguish these |
+| E-commerce | `niche-ecommerce` |
+| Other, where the client is actually a church | `niche-faith-nonprofit` (church sub-pattern) — e.g. **More Church**, currently sitting under `Other` |
+| Other, where the client is actually a non-profit/charity | `niche-faith-nonprofit` (non-profit sub-pattern) |
+| Anything else / `Other` / empty, not covered above | No niche pack matches — ask the human which pack applies, or whether a new one is needed. Do not guess. |
 
-Note: ERPNext's `custom_industry` Select list does not currently have an
-"Engineering" option distinct from "Property & Construction" or
-"Professional Services" — flagged for the team to decide whether to add
-one. Until then, `niche-engineering` is matched manually by the human
-starting the build, not inferred automatically.
+Known gaps in the `custom_industry` Select list — flag to the team rather
+than working around them silently:
+
+- No distinct **Engineering** value (closest: Property & Construction /
+  Professional Services).
+- No distinct **App/Software** value separate from general Technology.
+- No **Church** or **Non-profit/Charity** value — these currently land in
+  `Other`, which is why `Other` can't be routed automatically and always
+  needs a human check.

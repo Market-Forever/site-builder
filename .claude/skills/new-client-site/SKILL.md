@@ -40,6 +40,10 @@ Load the matched skill:
   Skin Clinic
 - `niche-property` — residential agents and property management/developers
 - `niche-engineering` — B2B professional/technical services
+- `niche-ecommerce` — online stores selling physical or digital products
+- `niche-faith-nonprofit` — churches and non-profits/charities
+- `niche-app-marketing` — marketing sites for apps/software products (not
+  B2B technical services — see that skill for how to tell them apart)
 
 ## 4. Check what's actually being built
 

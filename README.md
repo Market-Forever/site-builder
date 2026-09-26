@@ -2,7 +2,8 @@
 
 Market Forever's website build system: React/Next.js/Tailwind client
 sites, driven by client briefs already captured in ERPNext, organized by
-niche (medical-aesthetic, property, engineering/B2B).
+niche (medical-aesthetic, property, engineering/B2B, e-commerce,
+church/non-profit, app marketing).
 
 See `CLAUDE.md` for the full workflow. Start with the `new-client-site`
 skill.
