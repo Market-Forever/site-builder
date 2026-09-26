@@ -1,0 +1,38 @@
+/*
+  Brand-neutral placeholder tokens. Override per client — this file is the
+  single place a client's visual identity gets set. Don't hardcode colors
+  in components; reference these variables.
+*/
+
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #16181d;
+  --color-fg-muted: #565b66;
+  --color-accent: #2b5cff;
+  --color-accent-fg: #ffffff;
+  --color-border: #e3e5ea;
+  --color-surface: #f6f7f9;
+
+  --font-heading: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+
+  --space-section-y: clamp(3rem, 6vw, 6rem);
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #101114;
+  --color-fg: #f2f3f5;
+  --color-fg-muted: #9a9fab;
+  --color-border: #2a2d34;
+  --color-surface: #181a1f;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+}
